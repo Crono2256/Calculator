@@ -1,3 +1,5 @@
+/* font-family: 'Montserrat', sans-serif; */
+
 /* BASIC RESET */
 
 * {
@@ -7,6 +9,10 @@
 }
 
 /* PRIMARY STYLE */
+
+html {
+    font-family: 'Montserrat', sans-serif;
+}
 
 .main {
     position: relative;
