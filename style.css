@@ -1,8 +1,12 @@
+/* BASIC RESET */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
+/* PRIMARY STYLE */
 
 .main {
     position: relative;
@@ -33,6 +37,8 @@
     background-color: #a9c;
 }
 
+/* NUMBERS PANEL */
+
 .input .numbers {
     display: flex;
     justify-content: space-between;
@@ -57,3 +63,5 @@
 .numbers div:last-child {
     width: 42%;
 }
+
+/* OPERATORS PANEL */
