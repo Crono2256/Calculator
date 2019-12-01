@@ -23,6 +23,7 @@
 }
 
 .input {
+    display: flex;
     position: absolute;
     width: 80%;
     height: 80%;
@@ -30,4 +31,29 @@
     left: 50%;
     transform: translateX(-50%);
     background-color: #a9c;
+}
+
+.input .numbers {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-basis: 70%;
+    background-color: #8ad;
+    padding: 3%;
+}
+
+.numbers div {
+    border: 2px solid black;
+    width: 26%;
+    height: 15%;
+}
+
+.numbers div:first-child {
+    order: 2;
+}
+
+.numbers div:first-child,
+.numbers div:last-child {
+    width: 42%;
 }
