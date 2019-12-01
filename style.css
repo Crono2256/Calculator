@@ -40,7 +40,6 @@ html {
     bottom: 4%;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #a9c;
 }
 
 /* NUMBERS PANEL */
@@ -51,7 +50,6 @@ html {
     align-items: center;
     flex-wrap: wrap;
     flex-basis: 70%;
-    background-color: #8ad;
     padding: 5%;
 }
 
