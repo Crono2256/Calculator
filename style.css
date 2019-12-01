@@ -46,7 +46,7 @@
     flex-wrap: wrap;
     flex-basis: 70%;
     background-color: #8ad;
-    padding: 3%;
+    padding: 5%;
 }
 
 .numbers div {
@@ -65,3 +65,32 @@
 }
 
 /* OPERATORS PANEL */
+
+.input .operators {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5%;
+}
+
+.input .operators div {
+    flex-basis: 40%;
+    height: 15%;
+    border: 2px solid black;
+}
+
+.input .operators .clear,
+.input .operators .equal {
+    flex-basis: 100%;
+}
+
+.clear {
+    order: -1;
+}
+
+.equal {
+    order: 2;
+}
