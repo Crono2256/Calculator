@@ -74,9 +74,9 @@ html {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    flex-grow: 1;
     justify-content: space-between;
     align-items: center;
+    width: 30%;
     padding: 5%;
 }
 
@@ -97,4 +97,21 @@ html {
 
 .equal {
     order: 2;
+}
+
+/* BUTTONS */
+
+.input div {
+    background-color: #ccc;
+    border-radius: 10%;
+    font-size: 30px;
+    text-align: center;
+    line-height: 165%;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.input div:hover {
+    background-color: #666;
+    color: white;
 }
