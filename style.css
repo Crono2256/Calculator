@@ -1,4 +1,5 @@
 /* font-family: 'Montserrat', sans-serif; */
+/* font-family: 'Tomorrow', sans-serif; */
 
 /* BASIC RESET */
 
@@ -24,6 +25,10 @@ html {
 
 .display {
     position: absolute;
+    text-align: right;
+    font-family: 'Tomorrow', sans-serif;
+    font-size: 34px;
+    line-height: 50px;
     width: 80%;
     height: 10%;
     top: 5%;
