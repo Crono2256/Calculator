@@ -12,7 +12,7 @@ function typeNumber() {
         nextClear = !nextClear;
         display.textContent = '';
     }
-    if (this.textContent.length < 14) {
+    if (display.textContent.length < 13) {
         if (display.textContent == '0') {
             display.textContent = '';
         }
@@ -25,7 +25,11 @@ numbers.forEach(number => number.addEventListener('click', typeNumber));
 operators.forEach(operator => operator.addEventListener('click', function () {
     if (operation) {
         currentValue = operation(currentValue, Number(display.textContent));
-        display.textContent = currentValue;
+        if (currentValue.toString().length <= 13) {
+            display.textContent = currentValue.toString();
+        } else {
+            display.textContent = (currentValue.toString()).slice(0, 10) + 'E' + (currentValue.toString().length - 10);
+        }
     }
     nextClear = true;
     currentValue = Number(display.textContent);
