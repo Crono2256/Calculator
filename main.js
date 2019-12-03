@@ -5,12 +5,17 @@ let operation = '';
 let currentValue = 0;
 let nextClear = false;
 
+display.textContent = '0';
+
 function typeNumber() {
     if (nextClear) {
         nextClear = !nextClear;
         display.textContent = '';
     }
     if (this.textContent.length < 14) {
+        if (display.textContent == '0') {
+            display.textContent = '';
+        }
         display.textContent += this.textContent
     };
 }
@@ -44,6 +49,14 @@ operators.forEach(operator => operator.addEventListener('click', function () {
             operation = (a, b) => {
                 return a / b;
             };
+            break;
+        case 'equal':
+            operation = '';
+            break;
+        case 'clear':
+            operation = '';
+            display.textContent = '0';
+            currentValue = 0;
             break;
     }
 }))
