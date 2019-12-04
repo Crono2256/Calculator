@@ -18,17 +18,18 @@ function typeNumber() {
         }
         display.textContent += this.textContent
     };
+    console.log(currentValue, operation)
 }
 
 numbers.forEach(number => number.addEventListener('click', typeNumber));
 
 operators.forEach(operator => operator.addEventListener('click', function () {
-    if (operation) {
+    if (operation && !nextClear) {
         currentValue = operation(currentValue, Number(display.textContent));
         if (currentValue.toString().length <= 13) {
             display.textContent = currentValue.toString();
         } else {
-            display.textContent = (currentValue.toString()).slice(0, 10) + 'E' + (currentValue.toString().length - 10);
+            display.textContent = (currentValue.toString()).slice(0, 10) + 'A' + (currentValue.toString().length - 10).toString();
         }
     }
     nextClear = true;
@@ -63,4 +64,5 @@ operators.forEach(operator => operator.addEventListener('click', function () {
             currentValue = 0;
             break;
     }
+    console.log(currentValue, operation)
 }))
