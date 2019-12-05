@@ -4,6 +4,7 @@ const operators = document.querySelectorAll('.operators div');
 let operation = '';
 let currentValue = 0;
 let nextClear = false;
+let firstOperation = true;
 
 display.textContent = '0';
 
@@ -18,7 +19,7 @@ function typeNumber() {
         }
         display.textContent += this.textContent
     };
-    console.log(currentValue, operation)
+    console.log(currentValue, operation, firstOperation)
 }
 
 numbers.forEach(number => number.addEventListener('click', typeNumber));
@@ -33,7 +34,10 @@ operators.forEach(operator => operator.addEventListener('click', function () {
         }
     }
     nextClear = true;
-    currentValue = Number(display.textContent);
+    if (firstOperation) {
+        firstOperation = !firstOperation;
+        currentValue = Number(display.textContent);
+    }
     switch (this.classList[0]) {
         case 'add':
             operation = (a, b) => {
@@ -62,7 +66,8 @@ operators.forEach(operator => operator.addEventListener('click', function () {
             operation = '';
             display.textContent = '0';
             currentValue = 0;
+            firstOperation = true;
             break;
     }
-    console.log(currentValue, operation)
+    console.log(currentValue, operation, firstOperation)
 }))
