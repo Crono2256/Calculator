@@ -9,7 +9,7 @@ let secondArg = '';
 
 display.textContent = '0';
 
-function typeNumber() {
+function typeNumber(e) {
     // if (nextClear) {
     //     nextClear = !nextClear;
     //     display.textContent = '';
@@ -22,19 +22,70 @@ function typeNumber() {
     // };
     // console.log(currentValue, operation, firstOperation, nextClear)
 
+    // console.log(e.keyCode);
+
+    // don't enter the function if other key than number is pressed
+    if (!(e.keyCode === 48 || e.keyCode === 49 || e.keyCode === 50 || e.keyCode === 51 || e.keyCode === 52 || e.keyCode === 53 || e.keyCode === 54 || e.keyCode === 55 || e.keyCode === 56 || e.keyCode === 57 || e.keyCode === 44 || e.keyCode === 46) && this.textContent === undefined) return;
+
+    let number;
+    if (this.textContent === undefined)
+        switch (e.keyCode) {
+            case 48:
+                number = '0'
+                break;
+            case 49:
+                number = '1'
+                break;
+            case 50:
+                number = '2'
+                break;
+            case 51:
+                number = '3'
+                break;
+            case 52:
+                number = '4'
+                break;
+            case 53:
+                number = '5'
+                break;
+            case 54:
+                number = '6'
+                break;
+            case 55:
+                number = '7'
+                break;
+            case 56:
+                number = '8'
+                break;
+            case 57:
+                number = '9'
+                break;
+            case 44:
+                number = '.'
+                break;
+            case 46:
+                number = '.'
+                break;
+        } else number = this.textContent;
+
+    // console.log(number);
+
     // INPUT
-    if (operation && (this.textContent !== '.' || !secondArg.includes('.'))) secondArg += this.textContent;
+    if (operation && (number !== '.' || !secondArg.includes('.'))) secondArg += number;
     else if (typeof (firstArg) === 'number') {
-        firstArg = this.textContent;
-    } else if ((this.textContent !== '.' || !firstArg.includes('.')) && !secondArg.includes('.')) firstArg += this.textContent;
+        firstArg = number;
+    } else if ((number !== '.' || !firstArg.includes('.')) && !secondArg.includes('.')) firstArg += number;
 
 
     console.log(firstArg, secondArg, operation);
 }
 
+// MOUSE AND KEYBOARD EVENTS
 numbers.forEach(number => number.addEventListener('click', typeNumber));
 
-// operator function
+window.addEventListener('keypress', typeNumber);
+
+// OPERATOR EVENT
 
 operators.forEach(operator => operator.addEventListener('click', function () {
     // if (operation && !nextClear) {
