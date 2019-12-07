@@ -9,6 +9,8 @@ let secondArg = '';
 
 display.textContent = '0';
 
+// INPUT FUNCTION
+
 function typeNumber(e) {
     // if (nextClear) {
     //     nextClear = !nextClear;
@@ -23,6 +25,8 @@ function typeNumber(e) {
     // console.log(currentValue, operation, firstOperation, nextClear)
 
     // console.log(e.keyCode);
+
+    // INPUT
 
     // don't enter the function if other key than number is pressed
     if (!(e.keyCode === 48 || e.keyCode === 49 || e.keyCode === 50 || e.keyCode === 51 || e.keyCode === 52 || e.keyCode === 53 || e.keyCode === 54 || e.keyCode === 55 || e.keyCode === 56 || e.keyCode === 57 || e.keyCode === 44 || e.keyCode === 46) && this.textContent === undefined) return;
@@ -70,7 +74,6 @@ function typeNumber(e) {
 
     // console.log(number);
 
-    // INPUT
     if (operation && (number !== '.' || !secondArg.includes('.'))) secondArg += number;
     else if (typeof (firstArg) === 'number') {
         firstArg = number;
@@ -80,14 +83,9 @@ function typeNumber(e) {
     console.log(firstArg, secondArg, operation);
 }
 
-// MOUSE AND KEYBOARD EVENTS
-numbers.forEach(number => number.addEventListener('click', typeNumber));
+// OPERATION FUNCTION
 
-window.addEventListener('keypress', typeNumber);
-
-// OPERATOR EVENT
-
-operators.forEach(operator => operator.addEventListener('click', function () {
+function doOperation(e) {
     // if (operation && !nextClear) {
     //     currentValue = operation(currentValue, Number(display.textContent));
     //     if (currentValue.toString().length <= 13) {
@@ -102,6 +100,15 @@ operators.forEach(operator => operator.addEventListener('click', function () {
     //     currentValue = Number(display.textContent);
     // }
 
+    // console.log(e.keyCode);
+
+    // 43:+, 45:-, 42:*, 47:/, 13 or 61:=, 99 or 67:C
+
+    // don't enter the function if other key than operator is pressed
+    if (!(e.keyCode === 43 || e.keyCode === 45 || e.keyCode === 42 || e.keyCode === 47 || e.keyCode === 13 || e.keyCode === 61 || e.keyCode === 99 || e.keyCode === 67) && this.textContent === undefined) return;
+
+    let operator;
+
     // execute operation, if set
 
     if (operation && secondArg) {
@@ -109,8 +116,38 @@ operators.forEach(operator => operator.addEventListener('click', function () {
         secondArg = '';
     }
 
+    if (this.textContent === undefined) {
+        switch (e.keyCode) {
+            case 43:
+                operator = 'add';
+                break;
+            case 45:
+                operator = 'substract';
+                break;
+            case 42:
+                operator = 'multiply';
+                break;
+            case 47:
+                operator = 'divide';
+                break;
+            case 13:
+                operator = 'equal';
+                break;
+            case 61:
+                operator = 'equal';
+                break;
+            case 99:
+                operator = 'clear';
+                break;
+            case 67:
+                operator = 'clear';
+                break;
+        }
+    } else operator = this.classList[0];
+
+
     // Set next operation
-    switch (this.classList[0]) {
+    switch (operator) {
         case 'add':
             operation = (a, b) => {
                 return a + b;
@@ -146,4 +183,14 @@ operators.forEach(operator => operator.addEventListener('click', function () {
             break;
     }
     console.log(firstArg, secondArg, operation)
-}))
+}
+
+// MOUSE AND KEYBOARD INPUT EVENTS
+numbers.forEach(number => number.addEventListener('click', typeNumber));
+
+window.addEventListener('keypress', typeNumber);
+
+// OPERATOR EVENTS
+operators.forEach(operator => operator.addEventListener('click', doOperation))
+
+window.addEventListener('keypress', doOperation);
