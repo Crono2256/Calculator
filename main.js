@@ -23,17 +23,18 @@ function typeNumber() {
     // console.log(currentValue, operation, firstOperation, nextClear)
 
     // INPUT
-    if (operation) secondArg += this.textContent;
+    if (operation && (this.textContent !== '.' || !secondArg.includes('.'))) secondArg += this.textContent;
     else if (typeof (firstArg) === 'number') {
         firstArg = this.textContent;
-        console.log('funkcja warunkowa');
-    } else firstArg += this.textContent;
+    } else if ((this.textContent !== '.' || !firstArg.includes('.')) && !secondArg.includes('.')) firstArg += this.textContent;
 
 
     console.log(firstArg, secondArg, operation);
 }
 
 numbers.forEach(number => number.addEventListener('click', typeNumber));
+
+// operator function
 
 operators.forEach(operator => operator.addEventListener('click', function () {
     // if (operation && !nextClear) {
