@@ -107,6 +107,9 @@ function doOperation(e) {
     // don't enter the function if other key than operator is pressed
     if (!(e.keyCode === 43 || e.keyCode === 45 || e.keyCode === 42 || e.keyCode === 47 || e.keyCode === 13 || e.keyCode === 61 || e.keyCode === 99 || e.keyCode === 67) && this.textContent === undefined) return;
 
+    if (firstArg === '.') firstArg = '0';
+    else if (secondArg === '.') secondArg = '0';
+
     let operator;
 
     // execute operation, if set
