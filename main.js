@@ -9,8 +9,15 @@ let secondArg = '';
 
 display.textContent = '0';
 
-// INPUT FUNCTION
+// OUTPUT FUNCTION
 
+function output() {
+    if (firstArg.toString().length >= 13) {
+        display.textContent = Number(firstArg).toExponential(8);
+    } else display.textContent = Number(firstArg);
+}
+
+// INPUT FUNCTION
 function typeNumber(e) {
     // if (nextClear) {
     //     nextClear = !nextClear;
@@ -79,12 +86,12 @@ function typeNumber(e) {
         firstArg = number;
     } else if ((number !== '.' || !firstArg.includes('.')) && !secondArg.includes('.')) firstArg += number;
 
-
     console.log(firstArg, secondArg, operation);
+
+    output();
 }
 
 // OPERATION FUNCTION
-
 function doOperation(e) {
     // if (operation && !nextClear) {
     //     currentValue = operation(currentValue, Number(display.textContent));
@@ -186,6 +193,8 @@ function doOperation(e) {
             break;
     }
     console.log(firstArg, secondArg, operation)
+
+    output();
 }
 
 // MOUSE AND KEYBOARD INPUT EVENTS
