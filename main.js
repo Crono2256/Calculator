@@ -10,12 +10,55 @@ display.textContent = '0';
 // OUTPUT FUNCTION
 
 function output() {
-    if (secondArg.length >= 13) {
-        display.textContent = Number(secondArg).toExponential(8);
-    } else if (secondArg) display.textContent = Number(secondArg);
-    else if (firstArg.toString().length >= 13) {
+    let firstArgCut = '0';
+    let secondArgCut = '0'
+
+    // remove multiple zeros on beginning
+    for (let i = 0; i < firstArg.toString().length; i++) {
+        if (firstArg.toString()[i] === '.') {
+            if (i == 0) {
+                firstArgCut = '0' + firstArg.toString();
+            } else
+                firstArgCut = firstArg.toString().slice(i - 1);
+            i = firstArg.toString().length;
+        } else if (firstArg.toString()[i] !== '0') {
+            firstArgCut = firstArg.toString().slice(i);
+            i = firstArg.toString().length;
+        }
+    }
+
+    for (let i = 0; i < secondArg.length; i++) {
+        if (secondArg[i] === '.') {
+            if (i == 0) {
+                secondArgCut = '0' + secondArg.toString();
+            } else
+                secondArgCut = secondArg.slice(i);
+            i = secondArg.length;
+        } else if (secondArg[i] !== '0') {
+            secondArgCut = secondArg.slice(i);
+            i = secondArg.length;
+        }
+    }
+
+    console.log(firstArgCut, secondArgCut);
+
+    // check if char limit is reached and display number with notation or not
+    if (secondArg) {
+        if ((Number(secondArgCut)).toString() !== Number(secondArgCut) && secondArgCut.toString().length < 13) {
+            display.textContent = secondArgCut;
+        } else if (secondArg === '.') display.textContent = '0';
+        else {
+            display.textContent = Number(secondArg).toExponential(8);
+        }
+    } else if ((Number(firstArgCut)).toString() !== Number(firstArgCut) && firstArgCut.toString().length < 13) {
+        display.textContent = firstArgCut;
+    } else if (firstArg === '.') display.textContent = '0';
+    else {
         display.textContent = Number(firstArg).toExponential(8);
-    } else display.textContent = Number(firstArg);
+    }
+
+    // console.log(firstArgCut.toString().length < 13)
+
 }
 
 // INPUT FUNCTION
@@ -71,7 +114,7 @@ function typeNumber(e) {
         firstArg = number;
     } else if ((number !== '.' || !firstArg.includes('.')) && !secondArg.includes('.')) firstArg += number;
 
-    // console.log(firstArg, secondArg, operation);
+    console.log(firstArg, secondArg, operation);
 
     output();
 }
