@@ -32,7 +32,7 @@ function output() {
             if (i == 0) {
                 secondArgCut = '0' + secondArg.toString();
             } else
-                secondArgCut = secondArg.slice(i);
+                secondArgCut = secondArg.slice(i - 1);
             i = secondArg.length;
         } else if (secondArg[i] !== '0') {
             secondArgCut = secondArg.slice(i);
